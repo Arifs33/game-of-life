@@ -1,0 +1,28 @@
+#target section
+- hosts: dev
+  user: arif
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+  tasks:
+    - name: tomcat url
+      action: get_url url=https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.zip dest=/mnt
+
+    - name: unzip tomcat
+      unarchive:
+        src: /mnt/apache-tomcat-9.0.73.zip
+        dest: /mnt/
+        remote_src: yes
+
+    - name: permission mnt
+      command: chmod -R 777 /mnt
+
+    - name: install java
+      action: yum pkg=java-1.8.0-openjdk-devel.x86_64 state=present
+
+    - name: copy gamefolife
+      action: copy src=/mnt/game-of-life/gameoflife-web/target/gameoflife.war dest=/mnt/apache-tomcat-9.0.73/webapps/
+
+    - name: start tomcat
+      command: cd /mnt/apache-tomcat-9.0.73/bin | ./startup.sh
