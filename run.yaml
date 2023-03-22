@@ -23,7 +23,7 @@
       
     - name: install maven on servers
       action: yum name=maven state=present
-      command: mvn clean install
+   
 
     - name: copy gamefolife
       action: copy src=/mnt/game-of-life/gameoflife-web/target/gameoflife.war dest=/mnt/apache-tomcat-9.0.73/webapps/
