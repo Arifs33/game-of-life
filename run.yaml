@@ -13,7 +13,7 @@
       unarchive:
         src: /mnt/apache-tomcat-9.0.73.zip
         dest: /mnt/
-        remote_src: yes
+        remote_src: no
 
     - name: permission mnt
       command: chmod -R 777 /mnt
