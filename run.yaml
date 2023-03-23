@@ -13,6 +13,7 @@
       unarchive:
         src: /mnt/apache-tomcat-9.0.73.zip
         dest: /mnt/
+        remote_src: yes
         
 
     - name: permission mnt
@@ -23,6 +24,9 @@
       
     - name: install maven on servers
       action: yum name=maven state=present
+      
+    - name: maven insatll
+      action: yum pkg=maven state=present
    
 
     - name: copy gamefolife
