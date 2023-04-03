@@ -18,7 +18,7 @@ pipeline {
 			steps {
 			dir ('/mnt/project/game-of-life') {
 			    
-			    sh " sudo mvn clean install"
+			    sh "mvn clean install"
 			
 			}
 			}
